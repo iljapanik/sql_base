@@ -1,0 +1,4 @@
+INSERT INTO
+	MENU (ID, PIZZERIA_ID, PIZZA_NAME, PRICE)
+VALUES
+	(19, 2, 'greek pizza', 800);
