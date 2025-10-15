@@ -1,0 +1,52 @@
+SHOW TRANSACTION ISOLATION LEVEL; --SERIALIZABLE
+
+--Session #1
+BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+--Session #2
+BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+--Session #1
+SELECT
+	*
+FROM
+	PIZZERIA
+WHERE
+	NAME = 'Pizza Hut';
+
+--Session #2
+UPDATE PIZZERIA
+SET
+	RATING = 3
+WHERE
+	NAME = 'Pizza Hut';
+
+--Session #2
+COMMIT;
+
+--Session #1
+SELECT
+	*
+FROM
+	PIZZERIA
+WHERE
+	NAME = 'Pizza Hut';
+
+--Session #1
+COMMIT;
+
+--Session #1
+SELECT
+	*
+FROM
+	PIZZERIA
+WHERE
+	NAME = 'Pizza Hut';
+
+--Session #2
+SELECT
+	*
+FROM
+	PIZZERIA
+WHERE
+	NAME = 'Pizza Hut';
